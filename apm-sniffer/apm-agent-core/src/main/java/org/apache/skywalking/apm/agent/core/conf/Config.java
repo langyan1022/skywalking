@@ -168,7 +168,8 @@ public class Config {
         public static String FILE_NAME = "skywalking-api.log";
 
         /**
-         * Log files directory. Default is blank string, means, use "system.out" to output logs.
+         * Log files directory. Default is blank string, means, use "{theSkywalkingAgentJarDir}/logs  " to output logs. 
+         * {theSkywalkingAgentJarDir} is the directory where the skywalking agent jar file is located.
          *
          * Ref to {@link WriterFactory#getLogWriter()}
          */
@@ -316,11 +317,14 @@ public class Config {
          */
         public static class OPGroup {
             /**
-             * Rules for RestTemplate plugin
+             * Since 6.6.0, exit span is not requesting endpoint register,
+             * this group rule is not required.
+             *
+             * Keep this commented, just as a reminder that, it will be reused in a RPC server side plugin.
              */
-            public static class RestTemplate implements OPGroupDefinition {
-                public static Map<String, String> RULE = new HashMap<String, String>();
-            }
+//            public static class RestTemplate implements OPGroupDefinition {
+//                public static Map<String, String> RULE = new HashMap<String, String>();
+//            }
         }
 
         public static class Light4J {
@@ -329,6 +333,25 @@ public class Config {
              * generating a local span for each.
              */
             public static boolean TRACE_HANDLER_CHAIN = false;
+        }
+
+        public static class SpringTransaction {
+
+            /**
+             * If true, the transaction definition name will be simplified
+             */
+            public static boolean SIMPLIFY_TRANSACTION_DEFINITION_NAME = false;
+        }
+
+        public static class JdkThreading {
+
+            /**
+             * Threading classes ({@link java.lang.Runnable} and {@link java.util.concurrent.Callable}
+             * and their subclasses, including anonymous inner classes)
+             * whose name matches any one of the {@code THREADING_CLASS_PREFIXES} (splitted by ,)
+             * will be instrumented
+             */
+            public static String THREADING_CLASS_PREFIXES = "";
         }
     }
 }

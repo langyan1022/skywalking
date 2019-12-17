@@ -145,4 +145,10 @@ public class ComponentsDefine {
     public static final OfficialComponent SOCKET_IO = new OfficialComponent(76, "SocketIO");
 
     public static final OfficialComponent REST_HIGH_LEVEL_CLIENT = new OfficialComponent(77, "rest-high-level-client");
+
+    public static final OfficialComponent SPRING_TX = new OfficialComponent(78, "spring-tx");
+
+    public static final OfficialComponent ARMERIA = new OfficialComponent(79, "Armeria");
+
+    public static final OfficialComponent JDK_THREADING = new OfficialComponent(80, "JdkThreading");
 }
